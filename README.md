@@ -1,130 +1,64 @@
-# TOMATO - Food Ordering Website
+# 🍔 YumYard - Full Stack Food Ordering & Delivery System
 
-This repository hosts the source code for TOMATO, a dynamic food ordering website built with the MERN Stack. It offers a user-friendly platform for seamless online food ordering.
+A complete full-stack food delivery application built with React, Node.js, Express, and MongoDB.
 
-## Demo
+## 🏗️ Architecture
 
-- User Panel: [https://food-delivery-frontend-s2l9.onrender.com/](https://food-delivery-frontend-s2l9.onrender.com/)
-- Admin Panel: [https://food-delivery-admin-wrme.onrender.com/](https://food-delivery-admin-wrme.onrender.com/)
+The repository is organized into three main modules:
+- [`backend/`](./backend): Express.js REST API with JWT authentication, MongoDB with Mongoose, and Multer for image uploads.
+- [`frontend/`](./frontend): Customer-facing web app built with React, Vite, and React Router.
+- [`admin/`](./admin): Admin management dashboard to add food items, manage menu listings, and update order statuses.
 
-## Features
+---
 
-- User Panel
-- Admin Panel
-- JWT Authentication
-- Password Hashing with Bcrypt
-- Stripe Payment Integration
-- Login/Signup
-- Logout
-- Add to Cart
-- Place Order
-- Order Management
-- Products Management
-- Filter Food Products
-- Login/Signup
-- Authenticated APIs
-- REST APIs
-- Role-Based Identification
-- Beautiful Alerts
+## 🚀 Quick Deployment
 
-## Screenshots
+Refer to the complete step-by-step instructions in [**`DEPLOYMENT.md`**](./DEPLOYMENT.md).
 
-![Hero](https://i.ibb.co/59cwY75/food-hero.png)
-- Hero Section
+### Summary:
+1. **Database**: Create a free **MongoDB Atlas (M0)** cluster and get your connection string.
+2. **Backend**: Deploy on **Render** (as a Web Service) with environment variables:
+   - `MONGO_URL`, `JWT_SECRET`, `PORT=4000`, `SALT=10`
+3. **Frontend & Admin**: Deploy on **Vercel** or **Render Static Sites** with:
+   - `VITE_API_URL`: Your deployed backend URL.
 
-![Products](https://i.ibb.co/JnNQPyQ/food-products.png)
-- Products Section
+---
 
-![Cart](https://i.ibb.co/t2LrQ8p/food-cart.png)
-- Cart Page
+## 💻 Local Development
 
-![Login](https://i.ibb.co/s6PgwkZ/food-login.png)
-- Login Popup
-
-## Run Locally
-
-Clone the project
-
+### 1. Backend
 ```bash
-    git clone https://github.com/Mshandev/Food-Delivery
-```
-Go to the project directory
-
-```bash
-    cd Food-Delivery
-```
-Install dependencies (frontend)
-
-```bash
-    cd frontend
-    npm install
-```
-Install dependencies (admin)
-
-```bash
-    cd admin
-    npm install
-```
-Install dependencies (backend)
-
-```bash
-    cd backend
-    npm install
-```
-Setup Environment Vaiables
-
-```Make .env file in "backend" folder and store environment Variables
-  JWT_SECRET=YOUR_SECRET_TEXT
-  SALT=YOUR_SALT_VALUE
-  MONGO_URL=YOUR_DATABASE_URL
-  STRIPE_SECRET_KEY=YOUR_KEY
- ```
-
-Setup the Frontend and Backend URL
-   - App.jsx in Admin folder
-      const url = YOUR_BACKEND_URL
-     
-  - StoreContext.js in Frontend folder
-      const url = YOUR_BACKEND_URL
-
-  - orderController in Backend folder
-      const frontend_url = YOUR_FRONTEND_URL 
-
-Start the Backend server
-
-```bash
-    nodemon server.js
+cd backend
+npm install
+# Set MONGO_URL and JWT_SECRET in backend/.env
+npm run seed     # (Optional) Seed initial food items
+npm run server   # Starts with nodemon on port 4000
 ```
 
-Start the Frontend server
-
+### 2. Frontend
 ```bash
-    npm start
+cd frontend
+npm install
+npm run dev      # Starts on http://localhost:5173
 ```
 
-Start the Backend server
-
+### 3. Admin Dashboard
 ```bash
-    npm start
+cd admin
+npm install
+npm run dev      # Starts on http://localhost:5174
 ```
-## Tech Stack
-* [React](https://reactjs.org/)
-* [Node.js](https://nodejs.org/en)
-* [Express.js](https://expressjs.com/)
-* [Mongodb](https://www.mongodb.com/)
-* [Stripe](https://stripe.com/)
-* [JWT-Authentication](https://jwt.io/introduction)
-* [Multer](https://www.npmjs.com/package/multer)
 
-## Deployment
+---
 
-The application is deployed on Render.
+## ⚙️ Environment Variables
 
-## Contributing
+### Backend (`backend/.env`)
+- `PORT`: Server port (default: `4000`)
+- `MONGO_URL`: MongoDB connection URI
+- `JWT_SECRET`: Secret key for JWT token signing
+- `SALT`: Salt rounds for password hashing (default: `10`)
+- `FRONTEND_URL`: URL of customer frontend
 
-Contributions are always welcome!
-Just raise an issue, and we will discuss it.
-
-## Feedback
-
-If you have any feedback, please reach out to me [here](https://www.linkedin.com/in/muhammad-shan-full-stack-developer/)
+### Frontend & Admin (`.env`)
+- `VITE_API_URL`: Base URL of the backend API (e.g. `http://localhost:4000` or deployed Render URL)

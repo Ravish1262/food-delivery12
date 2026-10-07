@@ -1,0 +1,58 @@
+services:
+  # 1. Backend Express API
+  - type: web
+    name: food-delivery-backend
+    env: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: MONGO_URL
+        sync: false # Set your MongoDB Atlas connection string in Render Dashboard
+      - key: JWT_SECRET
+        sync: false # Set a strong random secret
+      - key: SALT
+        value: 10
+      - key: FRONTEND_URL
+        sync: false # Set after deploying frontend
+
+  # 2. Frontend Customer Web App
+  - type: web
+    name: food-delivery-frontend
+    env: static
+    rootDir: frontend
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: food-delivery-backend
+          property: host
+
+  # 3. Admin Dashboard
+  - type: web
+    name: food-delivery-admin
+    env: static
+    rootDir: admin
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: food-delivery-backend
+          property: host

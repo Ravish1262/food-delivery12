@@ -18,8 +18,8 @@ const Navbar = ({ setShowLogin }) => {
   }
   return (
     <div className="navbar">
-      <Link to="/">
-        <img src={assets.logo} alt="" className="logo" />
+      <Link to="/" className="logo">
+        YumYard<span>.</span>
       </Link>
       <ul className="navbar-menu">
         <Link

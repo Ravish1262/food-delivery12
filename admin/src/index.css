@@ -30,3 +30,17 @@ hr{
 .cursor{
     cursor: pointer;
 }
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: tomato;
+  letter-spacing: -1.5px;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  user-select: none;
+  display: inline-block;
+}
+.logo span {
+  color: #a9a9a9;
+}
